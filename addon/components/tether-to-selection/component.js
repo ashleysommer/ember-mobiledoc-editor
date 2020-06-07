@@ -53,13 +53,13 @@ export default Component.extend({
       let isOffscreen = isOutOfBounds(dialogRect, boundingRect);
       if (isOffscreen) {
         let dialogAnchor = this.get('dialogAnchor');
-        this.$().css({
-          position: 'fixed',
-          left: isOffscreen.left ? DIALOG_MARGIN : (isOffscreen.right ? 'auto' : dialogAnchor.left),
-          right: isOffscreen.right ? DIALOG_MARGIN : 'auto',
-          top: isOffscreen.top ? DIALOG_MARGIN : 'auto',
-          bottom: isOffscreen.bottom ? DIALOG_MARGIN : (isOffscreen.top ? 'auto' : dialogAnchor.bottom)
-        });
+        this.element.style.position = 'fixed';
+        this.element.style.left =
+          isOffscreen.left ? DIALOG_MARGIN : (isOffscreen.right ? 'auto' : dialogAnchor.left);
+        this.element.style.right = isOffscreen.right ? DIALOG_MARGIN : 'auto';
+        this.element.style.top = isOffscreen.top ? DIALOG_MARGIN : 'auto';
+        this.element.style.bottom =
+          isOffscreen.bottom ? DIALOG_MARGIN : (isOffscreen.top ? 'auto' : dialogAnchor.bottom);
       }
     });
   }

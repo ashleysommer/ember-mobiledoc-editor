@@ -5,6 +5,9 @@ export default Component.extend({
   layout,
 
   didInsertElement() {
-    this.$('input').focus();
+    let firstInput = this.element.querySelector('input');
+    if (firstInput) {
+      firstInput.focus();
+    }
   }
 });

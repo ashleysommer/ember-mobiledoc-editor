@@ -25,7 +25,8 @@ export function selectRange(startNode, startOffset, endNode, endOffset) {
 }
 
 export function moveCursorTo(context, selector) {
-  let element = context.$(selector);
+
+  let element = context.querySelectorAll(selector);
   if (!element.length) {
     throw new Error(`could not find element from selector ${selector}`);
   } else if (element.length > 1) {

@@ -316,14 +316,19 @@ export default Component.extend({
   didRender() {
     let editor = this.get('editor');
     if (!editor.hasRendered) {
-      let editorElement = this.$('.mobiledoc-editor__editor')[0];
-      this._isRenderingEditor = true;
-      try {
-        editor.render(editorElement);
-      } catch(e) {
-        run.schedule('afterRender', () => { throw e; });
+      let editorElements = this.element.querySelectorAll('.mobiledoc-editor__editor');
+      if (editorElements) {
+        let editorElement = editorElements[0]
+        this._isRenderingEditor = true;
+        try {
+          editor.render(editorElement);
+        } catch (e) {
+          run.schedule('afterRender', () => {
+            throw e;
+          });
+        }
+        this._isRenderingEditor = false;
       }
-      this._isRenderingEditor = false;
     }
     this._setExpandoProperty(editor);
   },
